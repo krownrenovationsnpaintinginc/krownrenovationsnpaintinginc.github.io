@@ -4,7 +4,7 @@ import { useForm, ValidationError } from "@formspree/react";
 function QuotationForm() {
   const [state, handleSubmit] = useForm("mwvwykyo");
   if (state.succeeded) {
-    return <p>Thanks for joining!</p>;
+    return <p>Thank you for your inquiry. We will respond to you shortly.</p>;
   }
   return (
     <form onSubmit={handleSubmit}>
