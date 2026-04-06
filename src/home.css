@@ -1,60 +1,143 @@
-body {
+/* ===== GLOBAL RESET ===== */
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: Arial;
-  background: #0a0a0a;
-  color: white;
+  padding: 0;
+  transition: all 0.2s ease-in-out;
 }
 
-/* NAVBAR */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #0a0a0a;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* ===== VARIABLES ===== */
+:root {
+  --primary: gold;
+  --dark: #0a0a0a;
+  --card: #1a1a1a;
+}
+
+/* ===== NAVBAR ===== */
 .navbar {
   display: flex;
   justify-content: space-between;
-  padding: 20px 40px;
+  align-items: center;
+  padding: 15px 20px;
   background: black;
   position: fixed;
   width: 100%;
   z-index: 1000;
 }
 
-.logo {
-  color: gold;
+.navbar.scrolled {
+  box-shadow: 0 5px 20px rgba(0,0,0,0.6);
+}
+
+/* LOGO */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-img {
+  height: 40px;
+}
+
+.logo-text {
+  color: var(--primary);
   font-weight: bold;
+  font-size: 18px;
 }
 
-.navbar a {
+/* NAV LINKS */
+nav {
+  display: flex;
+}
+
+nav a {
   color: white;
-  margin-left: 20px;
   text-decoration: none;
+  margin-left: 20px;
+  position: relative;
 }
 
-/* HERO */
+/* Hover underline effect */
+nav a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background: var(--primary);
+  transition: 0.3s;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* MOBILE MENU ICON */
+.menu-toggle {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+/* ===== HERO ===== */
 .hero {
   height: 100vh;
-  background: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e') center/cover;
+  background: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e') center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  padding-top: 70px;
 }
 
 .overlay {
-  text-align: center;
   background: rgba(0,0,0,0.6);
   padding: 50px;
+  max-width: 90%;
+  border-radius: 10px;
 }
 
 .hero h1 {
-  color: gold;
   font-size: 50px;
+  color: var(--primary);
 }
 
+.hero p {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+/* BUTTON */
 .btn {
-  background: gold;
-  color: black;
+  display: inline-block;
+  margin-top: 20px;
   padding: 12px 25px;
+  background: var(--primary);
+  color: black;
   text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
 }
 
-/* SECTIONS */
+.btn:hover {
+  background: #e6c200;
+  transform: scale(1.05);
+}
+
+/* ===== SECTIONS ===== */
 .section {
   padding: 80px 40px;
   text-align: center;
@@ -64,27 +147,32 @@ body {
   background: #111;
 }
 
-/* GRID */
-.grid {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+.section h2 {
+  margin-bottom: 40px;
+  font-size: 32px;
 }
 
+/* ===== GRID ===== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+/* ===== CARDS ===== */
 .card {
-  background: #1a1a1a;
-  margin: 15px;
+  background: var(--card);
   padding: 25px;
-  width: 250px;
-  border: 1px solid gold;
-  transition: transform 0.3s;
+  border: 1px solid var(--primary);
+  border-radius: 8px;
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(255, 215, 0, 0.2);
 }
 
-/* GALLERY */
+/* ===== GALLERY ===== */
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -93,16 +181,18 @@ body {
 
 .gallery img {
   width: 100%;
-  height: 200px;
+  height: 220px;
   object-fit: cover;
-  transition: transform 0.3s;
+  border-radius: 5px;
+  cursor: pointer;
+  will-change: transform;
 }
 
 .gallery img:hover {
   transform: scale(1.05);
 }
 
-/* FORM */
+/* ===== FORM ===== */
 form {
   max-width: 500px;
   margin: auto;
@@ -114,68 +204,135 @@ input, textarea {
   margin: 10px 0;
   padding: 12px;
   border: none;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border: 2px solid var(--primary);
 }
 
 button {
-  background: gold;
+  background: var(--primary);
   border: none;
   padding: 12px;
   font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
-/* FOOTER */
-footer {
-  padding: 20px;
-  background: black;
+button:hover {
+  background: #e6c200;
 }
 
-.ba-container {
-  position: relative;
-  max-width: 600px;
-  margin: auto;
-  overflow: hidden;
-}
-
-.ba-container img {
+/* ===== MAP ===== */
+iframe {
   width: 100%;
-  display: block;
+  height: 300px;
+  border: 0;
+  border-radius: 10px;
 }
 
-.after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
-  overflow: hidden;
-}
-
-.slider {
-  width: 100%;
-}
+/* ===== FLOATING BUTTONS ===== */
 .call-btn, .whatsapp-btn {
   position: fixed;
   right: 20px;
-  width: 50px;
-  height: 50px;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
   text-align: center;
-  line-height: 50px;
-  font-size: 22px;
-  color: white;
+  line-height: 55px;
+  font-size: 24px;
   z-index: 1000;
 }
 
 .call-btn {
   bottom: 90px;
-  background: gold;
+  background: var(--primary);
   color: black;
 }
 
 .whatsapp-btn {
   bottom: 20px;
   background: #25D366;
+  color: white;
 }
 
-body {
-  font-family: 'Poppins', sans-serif;
+/* Hover pop */
+.call-btn:hover,
+.whatsapp-btn:hover {
+  transform: scale(1.1);
 }
+
+/* ===== FOOTER ===== */
+footer {
+  padding: 20px;
+  background: black;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+
+  .menu-toggle {
+    display: block;
+    color: white;
+  }
+
+  nav {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    flex-direction: column;
+    background: black;
+
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+  }
+
+  nav.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  nav a {
+    padding: 15px;
+    border-top: 1px solid #333;
+  }
+
+  .hero h1 {
+    font-size: 30px;
+  }
+
+  .overlay {
+    padding: 20px;
+  }
+
+  .section {
+    padding: 60px 20px;
+  }
+
+  .gallery img {
+    height: 180px;
+  }
+
+  .call-btn, .whatsapp-btn {
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    font-size: 20px;
+  }
+}
+
+/* ===== TABLET ===== */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
