@@ -4,7 +4,7 @@ function App() {
   return (
     <section>
       <div className="container align-center">
-        Hi krownrenovationsnpaintinginc.github.io
+        Hi krownrenovationsnpaintinginc
       </div>
     </section>
   );
